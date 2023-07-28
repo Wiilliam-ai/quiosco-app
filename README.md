@@ -1,34 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Este proyecto esta construido en NextJs
+# Configuración de Desarrollo
 
-## Getting Started
+El proyecto fue echo con la guia del tutor de Udemy [Juan Pablo de la Torre](https://codigoconjuan.com/) del curso de React JS.
 
-First, run the development server:
+## Requeriminetos
+- Contar con una base de datos [MySQL](https://www.mysql.com/) o [PostgreSQL](https://www.postgresql.org/)
+- Tener instalado [Node](https://nodejs.org/es) y NPM
+
+Primero clonamos el proyecto.
 
 ```bash
-npm run dev
-# or
-yarn dev
+git clone https://github.com/Wiilliam-ai/quiosco-app.git
+cd quiosco-app
 ```
+Luego instalamos las dependencias.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+cd quiosco-app
+npm install
+```
+Luego creamos un archivo **.env** en este se encontrara la configuracion de la conexion a la base de datos ya que el proyecto esta echo con prisma y a traves de este le pasaremos la cadena de conexion.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+>La cadena de conexion esta compuesta por
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+# db Engine : mysql - postgresql
+# usuario: root
+# clave: 123456
+# hostname: 172.17.0.2
+# puerto: 3306
+# Nombre de base de datos: respaldo
+DATABASE_URL="mysql://root:123456@172.17.0.2:3306/respaldo"
+```
+En el repositorio se encuentra las migraciones ya realizadas para no tener inconbenientes con el motor de base datos que esten usando realizaremos los siguientes pasos.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- **Paso 1**: Eliminar la carpeta migrations
+![paso1](/imgreadme/paso1.png)
+- **Paso 2**: Modificamos el archivo _**schema.prisma**_
+![paso2](/imgreadme/paso2.png)
+> dependienddo de la base datos que tienen deben modificar el provider
 
-## Learn More
+Una ves completado todo lo anterior realizado procederemos a realizar las migraciones.
 
-To learn more about Next.js, take a look at the following resources:
+Abrir una terminal en el mismo la raiz del proyecto.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx prisma migrate dev
+```
+En la terminal tendras que agregar un nombre a la migracion puedes poner cualquier palabra.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Luego de haber completado las migraciones tenemos que agregar registros a nuestra base de datos todo lo realizaremos desde la terminal gracias a prisma.
 
-## Deploy on Vercel
+En el packaje.json ya esta definido el comando para prisma solo ejecutamos desde la termial.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx prisma db seed
+```
+Si completaste todos los pasos con exito ya puedes arrancar el proyecto.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Arranca el proyecto.
+```bash
+npm run dev
+```
+Las rutas de las paginas son solo 3
+```bash
+http://localhost:3000/
+/
+/resumen
+/total
+# Solo para ingresar al admin es desde la URL no hay boton
+/admin
+```
+> / - /Home
+
+![home](/imgreadme/Home.png)
+
+> /resumen
+
+![resumen](/imgreadme/resumen.png)
+
+> /total
+
+![total](/imgreadme/total.png)
+
+> /admin
+![admin](/imgreadme/admin.png)
