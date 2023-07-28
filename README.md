@@ -35,9 +35,13 @@ DATABASE_URL="mysql://root:123456@172.17.0.2:3306/respaldo"
 En el repositorio se encuentra las migraciones ya realizadas para no tener inconbenientes con el motor de base datos que esten usando realizaremos los siguientes pasos.
 
 - **Paso 1**: Eliminar la carpeta migrations
+
 ![paso1](/imgreadme/paso1.png)
+
 - **Paso 2**: Modificamos el archivo _**schema.prisma**_
+
 ![paso2](/imgreadme/paso2.png)
+
 > dependienddo de la base datos que tienen deben modificar el provider
 
 Una ves completado todo lo anterior realizado procederemos a realizar las migraciones.
@@ -84,4 +88,6 @@ http://localhost:3000/
 ![total](/imgreadme/total.png)
 
 > /admin
+
+
 ![admin](/imgreadme/admin.png)
