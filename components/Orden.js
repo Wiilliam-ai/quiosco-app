@@ -18,7 +18,6 @@ const Orden = ({orden}) => {
       <p className=" text-2xl font-semibold">Cliente: {nombre}</p>
       <div>
         <p className="inline-block">Fecha: {fecha}</p>
-        <p className="inline-block ml-5">Hora: {fecha}</p>
       </div>
       <div className="grid sm:grid-cols-2 gap-2">
         {
